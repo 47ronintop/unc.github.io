@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="img/io.ico" type="img/x-ico" />
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<script src="js/modernizr.custom.js"></script>
+		<style type="text/css">
+			ol li{
+				margin-bottom: 20px;
+				font-size: 20px;
+				font-weight: 700;
+				margin-left: 14%;
+				text-align: initial;
+			}
+			p img{
+				width: 130%;
+				margin-left: -15%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header class="codrops-header">
+				<h1>Github 代码托管</h1>
+				<p></p>
+				<nav class="codrops-demos">
+					<a href="index1.html">登陆</a>
+					<a class="current-demo" href="#">Github</a>
+					<a href="index.html">Yii框架视频集合</a>
+				</nav>
+			</header>
+			<section>
+				<p>Github</p>
+				<h3>托管你的代码,能使你测试上线网站,
+				当然是免费上线你的网站，
+				和服务器不同的是Github只是托管你的代码不能放数据库</h3>
+				<p>代码上传后会有一个域名,要是不想要给的域名可以去阿里云几块钱买个域名</p>
+				<div class="morph-button morph-button-overlay morph-button-fixed">
+					<button type="button">详细教程</button>
+					<div class="morph-content">
+						<div>
+							<div class="content-style-overlay">
+								<span class="icon icon-close">Close the overlay</span>
+								<h2>Github 图文教程</h2>
+								<ol>
+									<li>首先注册一个github账号 <a href="https://github.com/join?source=login" target="_blank" style="color:blue;">去注册>></a></li>
+									<li>注册好了之后,新建一个仓库(放文件的地方)</li>
+									<p><img src="img/car2.jpg"/></p>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</section>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>
